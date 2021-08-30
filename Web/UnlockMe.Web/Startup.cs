@@ -16,7 +16,6 @@
     using UnlockMe.Data.Models;
     using UnlockMe.Data.Repositories;
     using UnlockMe.Data.Seeding;
-    using UnlockMe.Services.Data;
     using UnlockMe.Services.Mapping;
     using UnlockMe.Services.Messaging;
     using UnlockMe.Web.ViewModels;
@@ -63,7 +62,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

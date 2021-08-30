@@ -23,7 +23,11 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Picture> Pictures { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
