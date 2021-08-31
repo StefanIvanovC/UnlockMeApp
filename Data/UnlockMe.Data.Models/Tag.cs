@@ -6,6 +6,11 @@
 
     public class Tag : BaseDeletableModel<int>
     {
+        public Tag()
+        {
+            this.Posts = new HashSet<Post>();
+        }
+
         public string Name { get; set; }
 
         public ICollection<Post> Posts { get; set; }

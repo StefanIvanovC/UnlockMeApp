@@ -1,9 +1,31 @@
 ﻿@using UnlockMe.Common
+@model UnlockMe.Web.ViewModels.Home.IndexViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="col-md-4 offset-md-4">
+        <ul class="list-group">
+            <li class="list-group-item bg-primary text-light font-weight-bold d-flex justify-content-between align-text-center">
+                UnlockMe Statistics
+                <span class="badge badge-primary text-light font-weight-bold justify-content-between align-text-center">TOTAL</span> 
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Public Posts:
+                <span class="badge badge-primary badge-pill"> @Model.PostCount </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Upload Pictures:
+                <span class="badge badge-primary badge-pill"> @Model.PicturesCount </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Registered Users:
+                <span class="badge badge-primary badge-pill"> @Model.UsersCount </span>
+            </li>
+        </ul>
+    </div>
+    <p></p>
+
 </div>

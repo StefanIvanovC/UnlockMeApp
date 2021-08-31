@@ -1,15 +1,32 @@
 ﻿namespace UnlockMe.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
+    using UnlockMe.Data;
     using UnlockMe.Web.ViewModels;
+    using UnlockMe.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
+        private readonly ApplicationDbContext db;
+
+        public HomeController(ApplicationDbContext db)
+        {
+            this.db = db;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var viewModel = new IndexViewModel()
+            {
+                PostCount = this.db.Posts.Count(),
+                PicturesCount = this.db.Posts.Count(),
+                UsersCount = this.db.Users.Count(),
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

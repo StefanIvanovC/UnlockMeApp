@@ -21,7 +21,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\UnlockMe.Data.Common\UnlockMe.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\UnlockMe.Data.Models\UnlockMe.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\UnlockMe.Web.ViewModels\UnlockMe.Web.ViewModels.csproj" />
     <ProjectReference Include="..\UnlockMe.Services.Mapping\UnlockMe.Services.Mapping.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
