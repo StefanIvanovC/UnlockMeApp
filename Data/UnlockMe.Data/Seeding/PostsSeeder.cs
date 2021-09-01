@@ -20,7 +20,7 @@
                 TagId = 2,
                 Title = "Seeder Name",
                 Description = "Seerder Description",
-            }); ;
+            });
 
             await dbContext.Posts.AddAsync(new Post
             {

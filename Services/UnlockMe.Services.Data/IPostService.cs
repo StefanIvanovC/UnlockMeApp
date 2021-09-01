@@ -1,11 +1,16 @@
 ﻿namespace UnlockMe.Services.Data
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using UnlockMe.Web.ViewModels.Post;
 
     public interface IPostService
     {
-        Task CreateAsync(CreatePostInputModel input);
+        Task CreateAsync(CreatePostInputModel input, string userId);
+
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6);
+
+        int GetCount();
     }
 }
