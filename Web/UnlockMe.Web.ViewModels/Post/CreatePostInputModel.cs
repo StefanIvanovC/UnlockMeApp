@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Microsoft.AspNetCore.Http;
+
     public class CreatePostInputModel
     {
         [Required]
@@ -13,6 +15,9 @@
         [Required]
         [MinLength(3)]
         public string Description { get; set; }
+
+        [Required]
+        public IFormFile Picture { get; set; }
 
         // public int TagId { get; set; } - TODO if user add Tag or Category
         public string AddedByUserId { get; set; }

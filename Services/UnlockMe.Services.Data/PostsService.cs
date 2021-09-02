@@ -1,6 +1,8 @@
 ﻿namespace UnlockMe.Services.Data
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -13,12 +15,13 @@
     {
         private readonly IDeletableEntityRepository<Post> postsRepository;
 
-        public PostsService(IDeletableEntityRepository<Post> postsRepository)
+        public PostsService(
+            IDeletableEntityRepository<Post> postsRepository)
         {
             this.postsRepository = postsRepository;
         }
 
-        public async Task CreateAsync(CreatePostInputModel input, string userId)
+        public async Task CreateAsync(CreatePostInputModel input, string userId, string picturePath)
         {
             var post = new Post
             {
@@ -27,6 +30,30 @@
                 Description = input.Description,
                 TagId = 2,
             };
+
+            var allowedExtensions = new[] { "jpg", "png" };
+
+            var currentPicture = input.Picture;
+            var currentPictureName = currentPicture.FileName;
+            var extension = Path.GetExtension(currentPictureName);
+            if (!allowedExtensions.Any(x => extension.EndsWith(x)))
+            {
+                throw new Exception($"Invalid picture extension - {extension}");
+            }
+
+            var dbPicture = new Picture
+            {
+                AddedByUserId = userId,
+                Post = post,
+                Extension = extension,
+            };
+
+            post.Pictures.Add(dbPicture);
+            Directory.CreateDirectory("{imagePath}/pictures/");
+            var physicalPath = $"{picturePath}/pictures/{dbPicture}.{extension}";
+
+            using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+            await currentPicture.CopyToAsync(fileStream);
 
             await this.postsRepository.AddAsync(post);
             await this.postsRepository.SaveChangesAsync();

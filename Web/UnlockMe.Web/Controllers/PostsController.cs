@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using UnlockMe.Data.Models;
@@ -14,13 +15,16 @@
     {
         private readonly IPostService postService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IWebHostEnvironment environment;
 
         public PostsController(
             IPostService postService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IWebHostEnvironment environment)
         {
             this.postService = postService;
             this.userManager = userManager;
+            this.environment = environment;
         }
 
         [Authorize]
@@ -35,11 +39,20 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                return this.View(input);
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.postService.CreateAsync(input, user.Id);
+
+            try
+            {
+                await this.postService.CreateAsync(input, user.Id, $"{this.environment.ContentRootPath}/pictures");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(input);
+            }
 
             // TODO - Redirect to the post view page later
             return this.Redirect("/");
