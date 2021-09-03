@@ -46,7 +46,7 @@
 
             try
             {
-                await this.postService.CreateAsync(input, user.Id, $"{this.environment.ContentRootPath}/pictures");
+                await this.postService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/pictures");
             }
             catch (Exception ex)
             {
@@ -70,6 +70,12 @@
                 Posts = this.postService.GetAll<PostInListViewModel>(id = 1, postsPerPage),
             };
             return this.View(viewModel);
+        }
+
+        public IActionResult ById(int id)
+        {
+            var post = this.postService.GetById<SinglePostViewModel>(id);
+            return this.View(post);
         }
     }
 }

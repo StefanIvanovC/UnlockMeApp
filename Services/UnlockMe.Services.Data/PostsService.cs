@@ -35,7 +35,7 @@
 
             var currentPicture = input.Picture;
             var currentPictureName = currentPicture.FileName;
-            var extension = Path.GetExtension(currentPictureName);
+            var extension = Path.GetExtension(currentPictureName).TrimStart('.');
             if (!allowedExtensions.Any(x => extension.EndsWith(x)))
             {
                 throw new Exception($"Invalid picture extension - {extension}");
@@ -49,7 +49,7 @@
             };
 
             post.Pictures.Add(dbPicture);
-            Directory.CreateDirectory("{imagePath}/pictures/");
+            Directory.CreateDirectory($"{picturePath}/pictures/");
             var physicalPath = $"{picturePath}/pictures/{dbPicture}.{extension}";
 
             using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
@@ -69,6 +69,16 @@
                  .ToList();
 
             return posts;
+        }
+
+        public T GetById<T>(int id)
+        {
+           var singlePost = this.postsRepository.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+           return singlePost;
         }
 
         public int GetCount()

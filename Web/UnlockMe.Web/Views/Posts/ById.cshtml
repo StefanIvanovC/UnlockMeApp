@@ -1,0 +1,118 @@
+﻿@model UnlockMe.Web.ViewModels.Post.SinglePostViewModel
+@{
+    this.ViewData["Title"] = Model.Title;
+}
+<div class="single-recipe-layout1">
+    <div class="ctg-name">@this.Model.TagName</div>
+    <h2 class="item-title">@this.ViewData["Title"]</h2>
+    <h2 class="item-title">@this.Model.Description</h2>
+    <div class="row mb-4">
+        <div class="col-xl-9 col-12">
+            <ul class="entry-meta">
+                <li class="single-meta">
+                    <i class="far fa-calendar-alt"></i>@this.Model.CreatedOn.ToShortDateString()
+                </li>
+                <li class="single-meta">
+                    <a href="#">
+                        <i class="fas fa-user"></i>by <span>
+                            @this.Model.AddedByUserUserName
+                        </span>
+                    </a>
+                </li>
+                <li class="single-meta">
+                    <ul class="item-rating">
+                        <li class="star-fill"><i class="fas fa-star"></i></li>
+                        <li class="star-fill"><i class="fas fa-star"></i></li>
+                        <li class="star-fill"><i class="fas fa-star"></i></li>
+                        <li class="star-fill"><i class="fas fa-star"></i></li>
+                        <li class="star-empty"><i class="fas fa-star"></i></li>
+                        <li><span>9<span> / 10</span></span> </li>
+                    </ul>
+                </li>
+                <li class="single-meta">
+                    <a href="#">
+                        <i class="fas fa-heart"></i><span>02</span>
+                        Likes
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xl-3 col-12">
+            <ul class="action-item">
+                <li><button><i class="fas fa-print"></i></button></li>
+                <li><button><i class="fas fa-expand-arrows-alt"></i></button></li>
+                <li class="action-share-hover">
+                    <button><i class="fas fa-share-alt"></i></button>
+                    <div class="action-share-wrap">
+                        <a href="#" title="facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" title="skype"><i class="fab fa-skype"></i></a>
+                        <a href="#" title="rss"><i class="fas fa-rss"></i></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="item-figure">
+        <img src="@Model.PictureUrl" alt="Picture:@Model.Title" />
+    </div>
+    <div class="item-feature">
+        <ul>
+            <li>
+                <div class="feature-wrap">
+                    <div class="media">
+                        <div class="feature-icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <div class="media-body space-sm">
+                            <div class="feature-title">PREP TIME</div>
+                            <div class="feature-sub-title">45 Mins</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-wrap">
+                    <div class="media">
+                        <div class="feature-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="media-body space-sm">
+                            <div class="feature-title"></div>
+                            <div class="feature-sub-title">45 Mins</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-wrap">
+                    <div class="media">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="media-body space-sm">
+                            <div class="feature-title">SERVING</div>
+                            <div class="feature-sub-title">10 People</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-wrap">
+                    <div class="media">
+                        <div class="feature-icon">
+                            <i class="far fa-eye"></i>
+                        </div>
+                        <div class="media-body space-sm">
+                            <div class="feature-title">VIEWS</div>
+                            <div class="feature-sub-title">3,450</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
