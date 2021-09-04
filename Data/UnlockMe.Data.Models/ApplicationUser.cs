@@ -15,6 +15,8 @@ namespace UnlockMe.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Votes = new HashSet<Vote>();
+            this.Hearts = new HashSet<Heart>();
         }
 
         // Audit info
@@ -32,5 +34,9 @@ namespace UnlockMe.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<Vote> Votes { get; set; }
+
+        public virtual ICollection<Heart> Hearts { get; set; }
     }
 }

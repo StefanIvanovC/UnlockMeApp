@@ -7,14 +7,14 @@
 <div class="row">
     @foreach (var post in this.Model.Posts)
     {
-        <div class="card col-md-4">
-            <img src="@post.ImagePath" width="180" class="card-img-top" alt="@post.Title">
-            <div class="card-body">
-                <h5 class="card-title">@post.Title</h5>
-                <p class="card-text">@post.Desccription</p>
-                <a asp-action="ById" asp-route-id="@post.Id" class="btn btn-primary">Open Picture</a>
-            </div>
+    <div class="card" style="width: 18rem;">
+        <img src="@post.ImagePath" />
+        <div class="card-body">
+            <h5 class="card-title">@post.Title</h5>
+            <p class="card-text">@post.Desccription</p>
+            <a asp-action="ById" asp-route-id="@post.Id" target="_blank" class="btn btn-primary">Open Picture</a>
         </div>
+    </div>
     }
 </div>
 <hr>
@@ -50,4 +50,6 @@
             <a class="page-link" asp-action="All" asp-route-id="@Model.PagesCount">Oldest</a>
         </li>
     </ul>
+
+   
 </nav>

@@ -50,7 +50,7 @@
 
             post.Pictures.Add(dbPicture);
             Directory.CreateDirectory($"{picturePath}/pictures/");
-            var physicalPath = $"{picturePath}/pictures/{dbPicture}.{extension}";
+            var physicalPath = $"{picturePath}/posts/{dbPicture.Id}.{extension}";
 
             using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
             await currentPicture.CopyToAsync(fileStream);

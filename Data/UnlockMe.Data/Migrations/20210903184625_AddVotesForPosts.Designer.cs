@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UnlockMe.Data;
 
 namespace UnlockMe.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210903184625_AddVotesForPosts")]
+    partial class AddVotesForPosts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,37 +245,6 @@ namespace UnlockMe.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("UnlockMe.Data.Models.Heart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CountHearts")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Hearts");
-                });
-
             modelBuilder.Entity("UnlockMe.Data.Models.Picture", b =>
                 {
                     b.Property<string>("Id")
@@ -464,23 +435,6 @@ namespace UnlockMe.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("UnlockMe.Data.Models.Heart", b =>
-                {
-                    b.HasOne("UnlockMe.Data.Models.Post", "Post")
-                        .WithMany("Hearts")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("UnlockMe.Data.Models.ApplicationUser", "User")
-                        .WithMany("Hearts")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Post");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("UnlockMe.Data.Models.Picture", b =>
                 {
                     b.HasOne("UnlockMe.Data.Models.ApplicationUser", "AddedByUser")
@@ -536,8 +490,6 @@ namespace UnlockMe.Data.Migrations
                 {
                     b.Navigation("Claims");
 
-                    b.Navigation("Hearts");
-
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
@@ -547,8 +499,6 @@ namespace UnlockMe.Data.Migrations
 
             modelBuilder.Entity("UnlockMe.Data.Models.Post", b =>
                 {
-                    b.Navigation("Hearts");
-
                     b.Navigation("Pictures");
 
                     b.Navigation("Votes");

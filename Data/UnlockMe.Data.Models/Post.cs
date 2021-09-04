@@ -9,6 +9,8 @@
         public Post()
         {
             this.Pictures = new HashSet<Picture>();
+            this.Votes = new HashSet<Vote>();
+            this.Hearts = new HashSet<Heart>();
         }
 
         public string Title { get; set; }
@@ -26,5 +28,11 @@
         public virtual ApplicationUser AddedByUser { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
+
+        // Vote -----------------------
+        public virtual ICollection<Vote> Votes { get; set; }
+
+        // Heart ------------------
+        public virtual ICollection<Heart> Hearts { get; set; }
     }
 }

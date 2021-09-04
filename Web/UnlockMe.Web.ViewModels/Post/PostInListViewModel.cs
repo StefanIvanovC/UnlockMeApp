@@ -25,7 +25,7 @@
             configuration.CreateMap<Post, PostInListViewModel>()
                 .ForMember(x => x.ImagePath, opt =>
                 opt.MapFrom(x =>
-                 "/pictures/posts/" + x.Pictures.FirstOrDefault().Id + "." + x.Pictures.FirstOrDefault().Extension));
+            "/pictures/posts/" + x.Pictures.FirstOrDefault().Id + "." + x.Pictures.FirstOrDefault().Extension));
         }
     }
 }
