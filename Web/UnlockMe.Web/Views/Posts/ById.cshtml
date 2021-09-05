@@ -19,44 +19,47 @@
                         </span>
                     </a>
                 </li>
-                <li class="single-meta">
-                    <ul class="item-rating">
-                        <li class="star-fill"><i class="fas fa-star"></i></li>
-                        <li class="star-fill"><i class="fas fa-star"></i></li>
-                        <li class="star-fill"><i class="fas fa-star"></i></li>
-                        <li class="star-fill"><i class="fas fa-star"></i></li>
-                        <li class="star-empty"><i class="fas fa-star"></i></li>
-                        <li><span>9<span> / 10</span></span> </li>
-                    </ul>
-                </li>
+                @*<li class="single-meta">
+                        <ul class="item-rating">
+                            <li class="star-fill"><i class="fas fa-star"></i></li>
+                            <li class="star-fill"><i class="fas fa-star"></i></li>
+                            <li class="star-fill"><i class="fas fa-star"></i></li>
+                            <li class="star-fill"><i class="fas fa-star"></i></li>
+                            <li class="star-empty"><i class="fas fa-star"></i></li>
+                            <li><span>9<span> / 10</span></span> </li>
+                        </ul>
+                    </li>*@
                 <li class="single-meta">
                     <a href="#">
-                        <i class="fas fa-heart" data-vote></i><span>02</span>
+                        <i class="fas fa-heart" data-vote></i><span>TODO</span>
                         Likes
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="col-xl-3 col-12">
-            <ul class="action-item">
-                <li><button><i class="fas fa-print"></i></button></li>
-                <li><button><i class="fas fa-expand-arrows-alt"></i></button></li>
-                <li class="action-share-hover">
-                    <button><i class="fas fa-share-alt"></i></button>
-                    <div class="action-share-wrap">
-                        <a href="#" title="facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" title="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#" title="skype"><i class="fab fa-skype"></i></a>
-                        <a href="#" title="rss"><i class="fas fa-rss"></i></a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        @*<div class="col-xl-3 col-12">
+                <ul class="action-item">
+                    <li><button><i class="fas fa-print"></i></button></li>
+                    <li><button><i class="fas fa-expand-arrows-alt"></i></button></li>
+                    <li class="action-share-hover">
+                        <button><i class="fas fa-share-alt"></i></button>
+                        <div class="action-share-wrap">
+                            <a href="#" title="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" title="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#" title="skype"><i class="fab fa-skype"></i></a>
+                            <a href="#" title="rss"><i class="fas fa-rss"></i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>*@
     </div>
     <div class="item-figure">
         <img src="@Model.PictureUrl" alt="Picture:@Model.Title" />
+    </div>
+    <div>
+        <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Unlock Picture</a>
     </div>
     <div class="item-feature">
         <ul>
@@ -67,8 +70,8 @@
                             <i class="far fa-clock"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div class="feature-title">PREP TIME</div>
-                            <div class="feature-sub-title">45 Mins</div>
+                            <div class="feature-title">Upload date</div>
+                            <div class="feature-sub-title">@Model.CreatedOn</div>
                         </div>
                     </div>
                 </div>
@@ -77,11 +80,11 @@
                 <div class="feature-wrap">
                     <div class="media">
                         <div class="feature-icon">
-                            <i class="fas fa-utensils"></i>
+                            <i class="fas fa-unlock"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div class="feature-title"></div>
-                            <div class="feature-sub-title">45 Mins</div>
+                            <div class="feature-title">Ulocks</div>
+                            <div class="feature-sub-title">0</div>
                         </div>
                     </div>
                 </div>
@@ -93,8 +96,8 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div class="feature-title">SERVING</div>
-                            <div class="feature-sub-title">10 People</div>
+                            <div class="feature-title">Likes</div>
+                            <div class="feature-sub-title">0</div>
                         </div>
                     </div>
                 </div>
@@ -107,7 +110,7 @@
                         </div>
                         <div class="media-body space-sm">
                             <div class="feature-title">VIEWS</div>
-                            <div class="feature-sub-title">3,450</div>
+                            <div class="feature-sub-title">TODO</div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +121,7 @@
 <!-- Profile info - Link to the profile of the owner of the post, name of profile, description of the profile, number of posts -->
 <div class="recipe-author">
     <div class="media media-none--xs">
-        <img src="TODO: PROFILE PICTURE" alt="Blog Author" class="rounded-circle media-img-auto">
+        <img src="TODO: PROFILE PICTURE" alt="Avatar of User" class="rounded-circle media-img-auto">
         <div class="media-body">
             <h4 class="author-title">@Model.AddedByUserUserName</h4>
             <h5 class="author-sub-title">Written by</h5>
@@ -127,4 +130,7 @@
             </p>
         </div>
     </div>
+</div>
+<div> 
+    <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Go to profile</a>
 </div>
