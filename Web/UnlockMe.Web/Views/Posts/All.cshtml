@@ -7,11 +7,11 @@
 <div class="row">
     @foreach (var post in this.Model.Posts)
     {
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem; margin: 10px"  >
         <img src="@post.ImagePath" />
         <div class="card-body">
             <h5 class="card-title">@post.Title</h5>
-            <p class="card-text">@post.Desccription</p>
+            <h6 class="card-text">@post.Description</h6>
             <a asp-action="ById" asp-route-id="@post.Id" target="_blank" class="btn btn-primary">Open Picture</a>
         </div>
     </div>

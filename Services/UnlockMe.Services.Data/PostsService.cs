@@ -85,5 +85,13 @@
         {
             return this.postsRepository.All().Count();
         }
+
+        public IEnumerable<T> GetRandomPosts<T>(int count = 3)
+        {
+            return this.postsRepository.All().OrderBy(x => Guid.NewGuid())
+                .To<T>()
+                .Take(count)
+                .ToList();
+        }
     }
 }

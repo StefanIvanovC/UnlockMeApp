@@ -14,5 +14,7 @@
         int GetCount();
 
         T GetById<T>(int id);
+
+        IEnumerable<T> GetRandomPosts<T>(int count = 3);
     }
 }
