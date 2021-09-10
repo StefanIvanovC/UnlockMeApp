@@ -77,5 +77,13 @@
             var post = this.postService.GetById<SinglePostViewModel>(id);
             return this.View(post);
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.postService.DeleteAsync(id);
+            return this.RedirectToAction(nameof(this.All));
+        } 
     }
 }

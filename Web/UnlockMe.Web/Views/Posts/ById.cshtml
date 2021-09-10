@@ -131,6 +131,11 @@
         </div>
     </div>
 </div>
-<div> 
+<li class="single-meta">
+    <form asp-action="Delete" asp-route-id="@Model.Id">
+        <button>Delete Post</button>
+    </form>
+</li>
+<div>
     <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Go to profile</a>
 </div>

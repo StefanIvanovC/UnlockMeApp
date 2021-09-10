@@ -59,6 +59,13 @@
             await this.postsRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var post = this.postsRepository.All().FirstOrDefault(x => x.Id == id);
+            this.postsRepository.Delete(post);
+            await this.postsRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6)
         {
             var posts = this.postsRepository.AllAsNoTracking()
