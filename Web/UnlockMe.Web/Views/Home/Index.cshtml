@@ -18,12 +18,14 @@
         <div class="row">
             @foreach (var randomPost in Model.RandomPosts)
             {
-                <div class="card col-md-4" style="width: 18rem; margin: 10px">
-                    <img src="@randomPost.ImagePath" />
-                    <div class="card-body">
-                        <h5 class="card-title">@randomPost.Title</h5>
-                        <h6 class="card-text">@randomPost.Description</h6>
-                        <a asp-action="ById" asp-route-id="@randomPost.Id" target="_blank" class="btn btn-primary">Open Picture</a>
+                <div class="col-md-4 p-2">
+                    <div class="card p-4">
+                        <img src="@randomPost.ImagePath" />
+                        <div class="card-body">
+                            <h5 class="card-title">@randomPost.Title</h5>
+                            <h6 class="card-text">@randomPost.Description</h6>
+                            <a asp-action="ById" asp-route-id="@randomPost.Id" target="_blank" class="btn btn-primary">Open Picture</a>
+                        </div>
                     </div>
                 </div>
             }

@@ -7,14 +7,16 @@
 <div class="row">
     @foreach (var post in this.Model.Posts)
     {
-    <div class="card" style="width: 18rem; margin: 10px"  >
-        <img src="@post.ImagePath" />
-        <div class="card-body">
-            <h5 class="card-title">@post.Title</h5>
-            <h6 class="card-text">@post.Description</h6>
-            <a asp-action="ById" asp-route-id="@post.Id" target="_blank" class="btn btn-primary">Open Picture</a>
+        <div class="col-md-4 p-4" background-image: radial-gradient(#ff8a00, #e52e71)>
+            <div class="card p-4"; margin: 10px">
+                <img src="@post.ImagePath" />
+                <div class="card-body">
+                    <h5 class="card-title">@post.Title</h5>
+                    <h6 class="card-text">@post.Description</h6>
+                    <a asp-action="ById" asp-route-id="@post.Id" target="_blank" class="btn btn-primary">Open Picture</a>
+                </div>
+            </div>
         </div>
-    </div>
     }
 </div>
 <hr>
@@ -51,5 +53,5 @@
         </li>
     </ul>
 
-   
+
 </nav>
