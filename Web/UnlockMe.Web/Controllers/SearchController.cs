@@ -6,7 +6,6 @@
     {
         public SearchController()
         {
-
         }
 
         public IActionResult Index()
@@ -14,10 +13,9 @@
             return this.View();
         }
 
-        [HttpGet]
-        public IActionResult List(SearchListInoutModel input)
-        {
-
-        }
+        //[HttpGet]
+        //public IActionResult List(SearchListInoutModel input)
+        //{
+        //}
     }
 }

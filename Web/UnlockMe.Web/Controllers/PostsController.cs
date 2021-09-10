@@ -84,6 +84,6 @@
         {
             await this.postService.DeleteAsync(id);
             return this.RedirectToAction(nameof(this.All));
-        } 
+        }
     }
 }
