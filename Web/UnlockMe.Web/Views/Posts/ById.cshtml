@@ -55,11 +55,25 @@
                 </ul>
             </div>*@
     </div>
+<div class="col-xl-9 col-12">
+    <ul class="entry-meta">
+        <li class="single-meta">
+            <form asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
+            </form>
+            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Delete Post &#10060</button>
+        </li>
+        <li class="single-meta">
+            <form asp-action="Edit" asp-route-id="@Model.Id" id="editPost">
+            </form>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit">Edit Post &#128221</button>
+        </li>
+    </ul>
+</div>
     <div class="item-figure">
         <img src="@Model.PictureUrl" alt="Picture:@Model.Title" />
     </div>
     <div>
-        <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Unlock Picture</a>
+        <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Unlock Picture &#128274</a>
     </div>
     <div class="item-feature">
         <ul>
@@ -131,17 +145,38 @@
         </div>
     </div>
 </div>
-<form asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
-</form>
-<button type="submit" class="btn btn-danger col-md-2 offset-5" data-toggle="modal" data-target="#modalDelete">Delete Post &#10060</button>
-<form asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
-</form>
-<button type="submit" class="btn btn-primary col-md-2 offset-5" data-toggle="modal" data-target="#modalDelete">Edit Post &#10060</button>
+<div class="col-md-2 offset-md-1">
+    <form method="post" asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
+    </form>
+    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Delete Post &#10060</button>
+</div>
+<div class="col-md-2 offset-md-2">
+    <form asp-action="Edit" asp-route-id="@Model.Id" id="editPost">
+    </form>
+    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit">Edit Post &#128221</button>
+</div>
 <div>
-
     <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Go to "@Model.AddedByUserUserName" profile</a>
 </div>
 <!-- Modal DeletePost for confirmation window -->
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                <hr>
+            </div>
+            <div class="modal-body">
+                Do you want to delete "@Model.Title" post?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" onclick="deletePost.submit()">Delete Post &#10060</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal EditPost for confirmation window ------------------TODO------->
 <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
