@@ -85,5 +85,10 @@
             await this.postService.DeleteAsync(id);
             return this.RedirectToAction(nameof(this.All));
         }
+
+        public IActionResult CreateSecond()
+        {
+            return this.View();
+        }
     }
 }

@@ -1,0 +1,10 @@
+﻿<canvas id="canvas"></canvas>
+
+<button onclick="Restore()">Undo</button>
+<button onclick="Clear()">Clear</button>
+
+<div onclick="change_color(this)" style="background:red" class="stroke-color"></div>
+<div onclick="change_color(this)" style="background:blue" class="stroke-color"></div>
+<input type="color" oninput="stroke_color = this.value" placeholder="Colors">
+</div>
+<input type="range" min="1" max="100" oninput="stroke_width = this.value">
