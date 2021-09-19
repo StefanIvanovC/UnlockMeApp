@@ -19,6 +19,11 @@ namespace UnlockMe.Data.Models
             this.Hearts = new HashSet<Heart>();
         }
 
+        // User profile
+        public string AboutMe { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
+
         // Audit info
         public DateTime CreatedOn { get; set; }
 
