@@ -20,6 +20,9 @@ namespace UnlockMe.Data.Models
         }
 
         // User profile
+
+        public string ProfileImagePath { get; set; }
+
         public string AboutMe { get; set; }
 
         public DateTime DateOfBirth { get; set; }

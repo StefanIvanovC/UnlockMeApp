@@ -7,6 +7,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,7 @@ namespace UnlockMe.Web.Areas.Identity.Pages.Account
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "User Name")]
+            [MaxLength(15)]
             public string UserName { get; set; }
 
             [Required]
@@ -67,16 +69,19 @@ namespace UnlockMe.Web.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Required(ErrorMessage = "AboutMe description is required!")]
-            [Display(Name = "About me description")]
-            [Range(5, 100)]
-            public string AboutMe { get; set; }
-
             [Required(ErrorMessage = "Date of birth is required!")]
             [Display(Name = "Date of birth")]
             [DataType(DataType.Date)]
             [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
             public DateTime DateOfBirth { get; set; }
+
+            [Required(ErrorMessage = "AboutMe description is required!")]
+            [Display(Name = "About me description")]
+            [MaxLength(100)]
+            public string AboutMe { get; set; }
+
+            [Required]
+            public IFormFile Picture { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)

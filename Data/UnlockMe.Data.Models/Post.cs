@@ -11,6 +11,7 @@
             this.Pictures = new HashSet<Picture>();
             this.Votes = new HashSet<Vote>();
             this.Hearts = new HashSet<Heart>();
+            this.Comments = new HashSet<Comment>();
         }
 
         public string Title { get; set; }
@@ -34,5 +35,9 @@
 
         // Heart ------------------
         public virtual ICollection<Heart> Hearts { get; set; }
+
+        // Comments ---------------
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
