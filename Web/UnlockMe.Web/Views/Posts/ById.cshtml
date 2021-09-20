@@ -2,214 +2,222 @@
 @{
     this.ViewData["Title"] = Model.Title;
 }
-<div class="single-recipe-layout1">
-    <div class="ctg-name">@this.Model.TagName</div>
-    <h2 class="item-title">@this.ViewData["Title"]</h2>
-    <h2 class="item-title">@this.Model.Description</h2>
-    <div class="row mb-4">
-        <div class="col-xl-9 col-12">
-            <ul class="entry-meta">
-                <li class="single-meta">
-                    <i class="far fa-calendar-alt"></i>@this.Model.CreatedOn.ToShortDateString()
-                </li>
-                <li class="single-meta">
-                    <a href="#">
-                        <i class="fas fa-user"></i>by <span>
-                            @this.Model.AddedByUserUserName
-                        </span>
-                    </a>
-                </li>
-                @*<li class="single-meta">
-                        <ul class="item-rating">
-                            <li class="star-fill"><i class="fas fa-star"></i></li>
-                            <li class="star-fill"><i class="fas fa-star"></i></li>
-                            <li class="star-fill"><i class="fas fa-star"></i></li>
-                            <li class="star-fill"><i class="fas fa-star"></i></li>
-                            <li class="star-empty"><i class="fas fa-star"></i></li>
-                            <li><span>9<span> / 10</span></span> </li>
+<class ="container mt-lg-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="single-recipe-layout1">
+                <div class="ctg-name">@this.Model.TagName</div>
+                <h2 class="item-title">@this.ViewData["Title"]</h2>
+                <h2 class="item-title">@this.Model.Description</h2>
+                <div class="row mb-4">
+                    <div class="col-xl-9 col-12">
+                        <ul class="entry-meta">
+                            <li class="single-meta">
+                                <i class="far fa-calendar-alt"></i>@this.Model.CreatedOn.ToShortDateString()
+                            </li>
+                            <li class="single-meta">
+                                <a href="#">
+                                    <i class="fas fa-user"></i>by <span>
+                                        @this.Model.AddedByUserUserName
+                                    </span>
+                                </a>
+                            </li>
+                            @*<li class="single-meta">
+                                    <ul class="item-rating">
+                                        <li class="star-fill"><i class="fas fa-star"></i></li>
+                                        <li class="star-fill"><i class="fas fa-star"></i></li>
+                                        <li class="star-fill"><i class="fas fa-star"></i></li>
+                                        <li class="star-fill"><i class="fas fa-star"></i></li>
+                                        <li class="star-empty"><i class="fas fa-star"></i></li>
+                                        <li><span>9<span> / 10</span></span> </li>
+                                    </ul>
+                                </li>*@
+                            <li class="single-meta">
+                                <a href="#">
+                                    <i class="fas fa-heart" data-vote></i><span>TODO</span>
+                                    Likes
+                                </a>
+                            </li>
                         </ul>
-                    </li>*@
-                <li class="single-meta">
-                    <a href="#">
-                        <i class="fas fa-heart" data-vote></i><span>TODO</span>
-                        Likes
-                    </a>
-                </li>
-            </ul>
+                    </div>
+                    @*<div class="col-xl-3 col-12">
+                            <ul class="action-item">
+                                <li><button><i class="fas fa-print"></i></button></li>
+                                <li><button><i class="fas fa-expand-arrows-alt"></i></button></li>
+                                <li class="action-share-hover">
+                                    <button><i class="fas fa-share-alt"></i></button>
+                                    <div class="action-share-wrap">
+                                        <a href="#" title="facebook"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
+                                        <a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="#" title="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                                        <a href="#" title="skype"><i class="fab fa-skype"></i></a>
+                                        <a href="#" title="rss"><i class="fas fa-rss"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>*@
+                </div>
+                <div class="col-xl-9 col-12">
+                    <ul class="entry-meta">
+                        <li class="single-meta">
+                            <form asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
+                            </form>
+                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Delete Post &#10060</button>
+                        </li>
+                        <li class="single-meta">
+                            <form asp-action="Edit" asp-route-id="@Model.Id" id="editPost">
+                            </form>
+                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit">Edit Post &#128221</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="item-figure">
+                    <img src="@Model.PictureUrl" alt="Picture:@Model.Title" />
+                </div>
+                <div>
+                    <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Unlock Picture &#128274</a>
+                </div>
+                <div class="item-feature">
+                    <ul>
+                        <li>
+                            <div class="feature-wrap">
+                                <div class="media">
+                                    <div class="feature-icon">
+                                        <i class="far fa-clock"></i>
+                                    </div>
+                                    <div class="media-body space-sm">
+                                        <div class="feature-title">Upload date</div>
+                                        <div class="feature-sub-title">@Model.CreatedOn.ToShortDateString()</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-wrap">
+                                <div class="media">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-unlock"></i>
+                                    </div>
+                                    <div class="media-body space-sm">
+                                        <div class="feature-title">Ulocks</div>
+                                        <div class="feature-sub-title">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-wrap">
+                                <div class="media">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="media-body space-sm">
+                                        <div class="feature-title">Likes</div>
+                                        <div class="feature-sub-title">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-wrap">
+                                <div class="media">
+                                    <div class="feature-icon">
+                                        <i class="far fa-eye"></i>
+                                    </div>
+                                    <div class="media-body space-sm">
+                                        <div class="feature-title">VIEWS</div>
+                                        <div class="feature-sub-title">TODO</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        @*<div class="col-xl-3 col-12">
-                <ul class="action-item">
-                    <li><button><i class="fas fa-print"></i></button></li>
-                    <li><button><i class="fas fa-expand-arrows-alt"></i></button></li>
-                    <li class="action-share-hover">
-                        <button><i class="fas fa-share-alt"></i></button>
-                        <div class="action-share-wrap">
-                            <a href="#" title="facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" title="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                            <a href="#" title="skype"><i class="fab fa-skype"></i></a>
-                            <a href="#" title="rss"><i class="fas fa-rss"></i></a>
-                        </div>
-                    </li>
-                </ul>
-            </div>*@
     </div>
-<div class="col-xl-9 col-12">
-    <ul class="entry-meta">
-        <li class="single-meta">
-            <form asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
-            </form>
-            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Delete Post &#10060</button>
-        </li>
-        <li class="single-meta">
-            <form asp-action="Edit" asp-route-id="@Model.Id" id="editPost">
-            </form>
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit">Edit Post &#128221</button>
-        </li>
-    </ul>
-</div>
-    <div class="item-figure">
-        <img src="@Model.PictureUrl" alt="Picture:@Model.Title" />
+    <!-- Profile info - Link to the profile of the owner of the post, name of profile, description of the profile, number of posts -->
+    <div class="recipe-author">
+        <div class="media media-none--xs">
+            <img src="TODO: PROFILE PICTURE" alt="Avatar of User" class="rounded-circle media-img-auto">
+            <div class="media-body">
+                <h4 class="author-title">@Model.AddedByUserUserName</h4>
+                <h5 class="author-sub-title">Written by</h5>
+                <p>
+                    TODO DESCRIPTION IN PROFILE FOR USER
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 offset-md-1">
+        <form method="post" asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
+        </form>
+        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Delete Post &#10060</button>
+    </div>
+    <div class="col-md-2 offset-md-2">
+        <form asp-action="Edit" asp-route-id="@Model.Id" id="editPost">
+        </form>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit">Edit Post &#128221</button>
     </div>
     <div>
-        <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Unlock Picture &#128274</a>
+        <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Go to "@Model.AddedByUserUserName" profile</a>
     </div>
-    <div class="item-feature">
-        <ul>
-            <li>
-                <div class="feature-wrap">
-                    <div class="media">
-                        <div class="feature-icon">
-                            <i class="far fa-clock"></i>
-                        </div>
-                        <div class="media-body space-sm">
-                            <div class="feature-title">Upload date</div>
-                            <div class="feature-sub-title">@Model.CreatedOn</div>
-                        </div>
-                    </div>
+    <!-- Modal DeletePost for confirmation window -->
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                    <hr>
                 </div>
-            </li>
-            <li>
-                <div class="feature-wrap">
-                    <div class="media">
-                        <div class="feature-icon">
-                            <i class="fas fa-unlock"></i>
-                        </div>
-                        <div class="media-body space-sm">
-                            <div class="feature-title">Ulocks</div>
-                            <div class="feature-sub-title">0</div>
-                        </div>
-                    </div>
+                <div class="modal-body">
+                    Do you want to delete "@Model.Title" post?
                 </div>
-            </li>
-            <li>
-                <div class="feature-wrap">
-                    <div class="media">
-                        <div class="feature-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="media-body space-sm">
-                            <div class="feature-title">Likes</div>
-                            <div class="feature-sub-title">0</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="feature-wrap">
-                    <div class="media">
-                        <div class="feature-icon">
-                            <i class="far fa-eye"></i>
-                        </div>
-                        <div class="media-body space-sm">
-                            <div class="feature-title">VIEWS</div>
-                            <div class="feature-sub-title">TODO</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- Profile info - Link to the profile of the owner of the post, name of profile, description of the profile, number of posts -->
-<div class="recipe-author">
-    <div class="media media-none--xs">
-        <img src="TODO: PROFILE PICTURE" alt="Avatar of User" class="rounded-circle media-img-auto">
-        <div class="media-body">
-            <h4 class="author-title">@Model.AddedByUserUserName</h4>
-            <h5 class="author-sub-title">Written by</h5>
-            <p>
-                TODO DESCRIPTION IN PROFILE FOR USER
-            </p>
-        </div>
-    </div>
-</div>
-<div class="col-md-2 offset-md-1">
-    <form method="post" asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
-    </form>
-    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Delete Post &#10060</button>
-</div>
-<div class="col-md-2 offset-md-2">
-    <form asp-action="Edit" asp-route-id="@Model.Id" id="editPost">
-    </form>
-    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit">Edit Post &#128221</button>
-</div>
-<div>
-    <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Go to "@Model.AddedByUserUserName" profile</a>
-</div>
-<!-- Modal DeletePost for confirmation window -->
-<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
-                <hr>
-            </div>
-            <div class="modal-body">
-                Do you want to delete "@Model.Title" post?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-danger" onclick="deletePost.submit()">Delete Post &#10060</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal EditPost for confirmation window ------------------TODO------->
-<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
-                <hr>
-            </div>
-            <div class="modal-body">
-                Do you want to delete "@Model.Title" post?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-danger" onclick="deletePost.submit()">Delete Post &#10060</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- COMMENTS SECTION -->
-    <div class="container mt-lg-5">
-        <div class="row justify-content-center">
-            <div class="col-md-2">
-                <div class="card p-4">
-                    <div class="user align-items-center"> <small class="font-weight-bold"> Comments 0 </small></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" onclick="deletePost.submit()">Delete Post &#10060</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal EditPost for confirmation window ------------------TODO------->
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                    <hr>
+                </div>
+                <div class="modal-body">
+                    Do you want to delete "@Model.Title" post?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" onclick="deletePost.submit()">Delete Post &#10060</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- COMMENTS SECTION -->
     <div class="container mt-lg-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-8">
                 <div class="card p-4">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="80" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">james_olesenn</small> <small class="font-weight-bold">Hmm, This poster looks cool</small></span> </div> <small>2 days ago</small>
+                    <div class="headings d-flex justify-content-between align-items-center mb-3">
+                        <h5>
+                            <span><small class="font-weight-bold">Comments on @Model.Title post (@Model.CommentsCount)</small></span>
+                        </h5>
+                    </div>
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="80" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">james_olesenn</small> <small class="font-weight-bold">Hmm, This poster looks cool</small></span> </div> <small>2 days ago</small>
+                        </div>
+                    </div>
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="80" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">james_olesenn</small> <small class="font-weight-bold">Hmm, This poster looks cool</small></span> </div> <small>2 days ago</small>
+                        </div>
                     </div>
                 </div>
             </div>

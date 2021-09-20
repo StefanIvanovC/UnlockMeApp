@@ -14,11 +14,14 @@
     public class PostsService : IPostService
     {
         private readonly IDeletableEntityRepository<Post> postsRepository;
+        private readonly IDeletableEntityRepository<Comment> commentsRepository;
 
         public PostsService(
-            IDeletableEntityRepository<Post> postsRepository)
+            IDeletableEntityRepository<Post> postsRepository,
+            IDeletableEntityRepository<Comment> commentsRepository)
         {
             this.postsRepository = postsRepository;
+            this.commentsRepository = commentsRepository;
         }
 
         public async Task CreateAsync(CreatePostInputModel input, string userId, string picturePath)
@@ -86,6 +89,15 @@
                 .FirstOrDefault();
 
            return singlePost;
+        }
+
+        public int GetCommentsCount(int id)
+        {
+            var commentsCount = this.commentsRepository.All()
+                .Where(c => c.Id == id)
+                .Count();
+
+            return commentsCount;
         }
 
         public int GetCount()

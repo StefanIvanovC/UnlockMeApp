@@ -18,5 +18,7 @@
         IEnumerable<T> GetRandomPosts<T>(int count = 3);
 
         Task DeleteAsync(int id);
+
+        int GetCommentsCount(int id);
     }
 }

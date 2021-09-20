@@ -1,5 +1,9 @@
-﻿<a id="top-header"></a>
-<h1>Frequently Asked Questions - FAQ</h1>
+﻿@model UnlockMe.Web.ViewModels.Question.CreateQuestionInputModel
+@{
+    this.ViewData["Title"] = "Frequently Asked Questions - FAQ";
+}
+<a id="top-header"></a>
+<h1>@this.ViewData["Title"]</h1>
 <hr>
 <nav>
     <span><strong>Go to:  </strong></span>
@@ -13,6 +17,10 @@
     <span><strong> | </strong></span>
     <a href="#post">
         <img src="ADD PICTURE" alt="Post FAQ" title="Post FAQ" height="50">
+    </a>
+    <span><strong> | </strong></span>
+    <a href="#customQuestion">
+        <img src="ADD PICTURE" alt="Custom question" title="Custom question" height="50">
     </a>
 </nav>
 <hr>
@@ -210,10 +218,25 @@
 </div>
 <hr>
 <!-- ------------------------------------------------------- Email post form for user Questions --------------------------------------------- -->
-<div class="col-md-2 offset-md-1">
-    <form method="post" asp-action="SendToEmail">
-        <button class="btn btn-warning">Send Question &#10068</button>
-    </form>
+<a id="customQuestion"></a>
+<h2>Custom Question</h2>
+<div form method="post" class="card col-md-8 offset-sm-2 bg-light">
+    <div asp-validation-summary="All"></div>
+    <label for="exampleDataList" class="form-label d-inline p-2 ">Create your custom Question!</label>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Question"></label> class="form-label">Question</label>
+        <textarea asp-for="Question" class="form-control" id="Question" rows="3" placeholder="Hello, UnlockMe can I ask..."></textarea>></textarea>
+        <span asp-validation-for="Question" class="text-danger"></span>
+    </div>
+    <div class="md-3 d-inline p-2 ">
+        <form method="post" asp-action="SendToEmail">
+            <button class="btn btn-primary">Send your question &#128173</button>  <small>(You will recieve answer in your email as soon as possible.)*</small>
+        </form>
+    </div>
 </div>
 <hr>
 <nav>

@@ -37,7 +37,6 @@
         public virtual ICollection<Heart> Hearts { get; set; }
 
         // Comments ---------------
-
         public virtual ICollection<Comment> Comments { get; set; }
     }
 }

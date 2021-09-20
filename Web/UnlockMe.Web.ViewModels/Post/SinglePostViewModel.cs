@@ -30,5 +30,7 @@
                 opt.MapFrom(x =>
                  "/pictures/posts/" + x.Pictures.FirstOrDefault().Id + "." + x.Pictures.FirstOrDefault().Extension));
         }
+
+        public int CommentsCount { get; set; }
     }
 }
