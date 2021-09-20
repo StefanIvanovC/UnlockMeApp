@@ -28,6 +28,7 @@
         {
             var post = new Post
             {
+                Id = input.PostId,
                 AddedByUserId = userId,
                 Title = input.Title,
                 Description = input.Description,

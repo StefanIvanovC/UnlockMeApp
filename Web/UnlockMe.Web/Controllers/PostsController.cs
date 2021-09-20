@@ -55,7 +55,7 @@
             }
 
             // TODO - Redirect to the post view page later
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.ById), new { id = input.PostId });
         }
 
         // Posts/All/3 "Page of"
