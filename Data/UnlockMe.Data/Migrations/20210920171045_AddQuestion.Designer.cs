@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UnlockMe.Data;
 
 namespace UnlockMe.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210920171045_AddQuestion")]
+    partial class AddQuestion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -401,7 +403,7 @@ namespace UnlockMe.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("UnlockMe.Data.Models.Question", b =>
+            modelBuilder.Entity("UnlockMe.Data.Models.Qustion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -426,7 +428,7 @@ namespace UnlockMe.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("QuestionAsk")
+                    b.Property<string>("Question")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -617,7 +619,7 @@ namespace UnlockMe.Data.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("UnlockMe.Data.Models.Question", b =>
+            modelBuilder.Entity("UnlockMe.Data.Models.Qustion", b =>
                 {
                     b.HasOne("UnlockMe.Data.Models.ApplicationUser", "AddedByUser")
                         .WithMany("Questions")

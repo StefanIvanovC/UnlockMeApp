@@ -220,24 +220,24 @@
 <!-- ------------------------------------------------------- Email post form for user Questions --------------------------------------------- -->
 <a id="customQuestion"></a>
 <h2>Custom Question</h2>
-<div form method="post" class="card col-md-8 offset-sm-2 bg-light">
-    <div asp-validation-summary="All"></div>
-    <label for="exampleDataList" class="form-label d-inline p-2 ">Create your custom Question!</label>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+<form method="post" class="card col-md-8 offset-sm-2 bg-light" id="createQuestion">
+    <label for="exampleDataList" class="d-inline p-3 ">Create your custom Question!</label>
+    <div asp-validation-summary="All">
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email address</label>
+            <input asp-for="Email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="QuestionAsk" class="form-label">Question</label>
+            <textarea asp-for="QuestionAsk" class="form-control" id="Question" rows="3" placeholder="Hello, UnlockMe can I ask..."></textarea>
+            <span asp-validation-for="QuestionAsk" class="text-danger"></span>
+        </div>
+        <button type="submit" onclick="thankYou()" class="btn btn-primary col-md-3 offset-4">Send question &#128173</button>
     </div>
-    <div class="mb-3">
-        <label asp-for="Question"></label> class="form-label">Question</label>
-        <textarea asp-for="Question" class="form-control" id="Question" rows="3" placeholder="Hello, UnlockMe can I ask..."></textarea>></textarea>
-        <span asp-validation-for="Question" class="text-danger"></span>
-    </div>
-    <div class="md-3 d-inline p-2 ">
-        <form method="post" asp-action="SendToEmail">
-            <button class="btn btn-primary">Send your question &#128173</button>  <small>(You will recieve answer in your email as soon as possible.)*</small>
-        </form>
-    </div>
-</div>
+    <hr>
+    <small class="offset-3">(You will recieve answer in your email as soon as possible.)*</small>
+</form>
 <hr>
 <nav>
     <span><strong>Go to: </strong></span>

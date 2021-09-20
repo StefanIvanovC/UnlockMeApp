@@ -2,17 +2,28 @@
 {
     using System.Text;
     using System.Threading.Tasks;
-
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using UnlockMe.Data.Models;
+    using UnlockMe.Services.Data;
     using UnlockMe.Services.Messaging;
+    using UnlockMe.Web.ViewModels.Question;
 
     public class QuestionController : Controller
     {
         private readonly IEmailSender emailSender;
+        private readonly IQuestionsService questionService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public QuestionController(IEmailSender emailSender)
+        public QuestionController(
+            IEmailSender emailSender,
+            IQuestionsService questionService,
+            UserManager<ApplicationUser> userManager)
         {
             this.emailSender = emailSender;
+            this.questionService = questionService;
+            this.userManager = userManager;
         }
 
         public IActionResult Question()
@@ -21,15 +32,19 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendToEmail()
+        [Authorize]
+        public async Task<IActionResult> Question(CreateQuestionInputModel input)
         {
-            var html = new StringBuilder();
-            html.AppendLine($"<h1>Hello From UnlockME</h1>");
-            html.AppendLine($"<h2>I have some problem</h2>");
-            html.AppendLine($"<h3>HELP ME</h3>");
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
 
-            await this.emailSender.SendEmailAsync("UnlockMe@gmail.com", "UnlockMe", "piseves428@sicmag.com", "Some subject", html.ToString());
-            return this.RedirectToAction("Index", "Home");
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.questionService.CreateAsync(input, user.Id);
+
+            // TODO - Redirect to the post view page later
+            return this.Redirect("/Question/Question");
         }
     }
 }

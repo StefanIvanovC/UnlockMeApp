@@ -17,6 +17,7 @@ namespace UnlockMe.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Votes = new HashSet<Vote>();
             this.Hearts = new HashSet<Heart>();
+            this.Questions = new HashSet<Question>();
         }
 
         // User profile
@@ -46,5 +47,7 @@ namespace UnlockMe.Data.Models
         public virtual ICollection<Vote> Votes { get; set; }
 
         public virtual ICollection<Heart> Hearts { get; set; }
+
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

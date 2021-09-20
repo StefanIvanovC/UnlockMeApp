@@ -1,11 +1,8 @@
 ﻿namespace UnlockMe.Web.ViewModels.Question
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
-    public class CreateQuestionInputModel 
+    public class CreateQuestionInputModel
     {
         [Required]
         [EmailAddress]
@@ -14,6 +11,6 @@
         [Required]
         [MinLength(10)]
         [MaxLength(500)]
-        public string Question { get; set; }
+        public string QuestionAsk { get; set; }
     }
 }

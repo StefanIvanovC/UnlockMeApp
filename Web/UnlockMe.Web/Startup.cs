@@ -67,6 +67,7 @@
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<IPostService, PostsService>();
             services.AddTransient<IHeartsService, HeartsService>();
+            services.AddTransient<IQuestionsService, QuestionsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
