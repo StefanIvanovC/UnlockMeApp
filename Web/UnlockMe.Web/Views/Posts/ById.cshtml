@@ -4,9 +4,12 @@
 }
 @if (this.TempData["SuccsessfulPostCreateMessage"] != null)
 {
-    <div class="alert alert-success">
-        @this.TempData["SuccsessfulPostCreateMessage"]
-    </div>
+<div class="alert alert-success alert-dismissible fade show">
+    @this.TempData["SuccsessfulPostCreateMessage"]
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 }
 <div class="card col-md-8 offset-2 bg-light row d-flex justify-content-center">
     <div class="col-md-8">

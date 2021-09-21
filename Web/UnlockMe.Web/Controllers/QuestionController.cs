@@ -44,6 +44,7 @@
             await this.questionService.CreateAsync(input, user.Id);
 
             // TODO - Redirect to the post view page later
+            this.TempData["SuccsessfulQuestionCreateMessage"] = "Your custom question is sent succsessfully! Don't forget to check your email!";
             return this.Redirect("/Question/Question");
         }
     }
