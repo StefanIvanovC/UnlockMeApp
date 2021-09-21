@@ -3,7 +3,8 @@
     this.ViewData["Title"] = "Create new post";
 }
 <h1>@this.ViewData["Title"]</h1>
-<form method="post" class="col-md-6 offset-3" enctype="multipart/form-data" id="createPost">
+<form method="post" class="card col-md-8 offset-2 bg-light" enctype="multipart/form-data" id="createPost">
+    <label for="exampleDataList" class="d-inline p-3 ">Create your Post!</label>
     <div asp-validation-summary="All"></div>
     <div class="form-group">
         <label asp-for="Title"></label>
@@ -27,10 +28,11 @@
             <span asp-validation-for="TagId" class="text-danger"></span>
         </div>*@
     <hr>
+    <div>
+        <canvas id="canvas" style="border: 1px solid black;" width="300" height="500"></canvas>
+    </div>
 </form>
-<div>
-    <canvas id="canvas" style="border: 1px solid black;" width="300" height="500"></canvas>
-</div>
+<hr>
 <button type="submit" class="btn btn-primary col-md-2 offset-5" data-toggle="modal" data-target="#modalCreate">Create Post &#128151</button>
 <!-- Modal CreatePost for confirmation window -->
 <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

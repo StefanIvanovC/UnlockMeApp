@@ -24,8 +24,8 @@
         // GET: Administration/Posts
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = db.Posts.Include(p => p.AddedByUser).Include(p => p.Tag);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = this.db.Posts.Include(p => p.AddedByUser).Include(p => p.Tag);
+            return this.View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Administration/Posts/Details/5
@@ -33,27 +33,27 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            var post = await db.Posts
+            var post = await this.db.Posts
                 .Include(p => p.AddedByUser)
                 .Include(p => p.Tag)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            return View(post);
+            return this.View(post);
         }
 
         // GET: Administration/Posts/Create
         public IActionResult Create()
         {
-            ViewData["AddedByUserId"] = new SelectList(db.Users, "Id", "Id");
-            ViewData["TagId"] = new SelectList(db.Tags, "Id", "Id");
-            return View();
+            this.ViewData["AddedByUserId"] = new SelectList(this.db.Users, "Id", "Id");
+            this.ViewData["TagId"] = new SelectList(this.db.Tags, "Id", "Id");
+            return this.View();
         }
 
         // POST: Administration/Posts/Create
@@ -63,15 +63,15 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Description,TagId,AddedByUserId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Post post)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Add(post);
-                await db.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                this.db.Add(post);
+                await this.db.SaveChangesAsync();
+                return this.RedirectToAction(nameof(this.Index));
             }
-            ViewData["AddedByUserId"] = new SelectList(db.Users, "Id", "Id", post.AddedByUserId);
-            ViewData["TagId"] = new SelectList(db.Tags, "Id", "Id", post.TagId);
-            return View(post);
+            this.ViewData["AddedByUserId"] = new SelectList(this.db.Users, "Id", "Id", post.AddedByUserId);
+            this.ViewData["TagId"] = new SelectList(this.db.Tags, "Id", "Id", post.TagId);
+            return this.View(post);
         }
 
         // GET: Administration/Posts/Edit/5
@@ -79,17 +79,17 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            var post = await db.Posts.FindAsync(id);
+            var post = await this.db.Posts.FindAsync(id);
             if (post == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
-            ViewData["AddedByUserId"] = new SelectList(db.Users, "Id", "Id", post.AddedByUserId);
-            ViewData["TagId"] = new SelectList(db.Tags, "Id", "Id", post.TagId);
-            return View(post);
+            this.ViewData["AddedByUserId"] = new SelectList(this.db.Users, "Id", "Id", post.AddedByUserId);
+            this.ViewData["TagId"] = new SelectList(this.db.Tags, "Id", "Id", post.TagId);
+            return this.View(post);
         }
 
         // POST: Administration/Posts/Edit/5
@@ -101,32 +101,32 @@
         {
             if (id != post.Id)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 try
                 {
-                    db.Update(post);
-                    await db.SaveChangesAsync();
+                    this.db.Update(post);
+                    await this.db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostExists(post.Id))
+                    if (!this.PostExists(post.Id))
                     {
-                        return NotFound();
+                        return this.NotFound();
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return this.RedirectToAction(nameof(this.Index));
             }
-            ViewData["AddedByUserId"] = new SelectList(db.Users, "Id", "Id", post.AddedByUserId);
-            ViewData["TagId"] = new SelectList(db.Tags, "Id", "Id", post.TagId);
-            return View(post);
+            this.ViewData["AddedByUserId"] = new SelectList(this.db.Users, "Id", "Id", post.AddedByUserId);
+            this.ViewData["TagId"] = new SelectList(this.db.Tags, "Id", "Id", post.TagId);
+            return this.View(post);
         }
 
         // GET: Administration/Posts/Delete/5
@@ -134,19 +134,19 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            var post = await db.Posts
+            var post = await this.db.Posts
                 .Include(p => p.AddedByUser)
                 .Include(p => p.Tag)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            return View(post);
+            return this.View(post);
         }
 
         // POST: Administration/Posts/Delete/5
@@ -154,15 +154,15 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var post = await db.Posts.FindAsync(id);
-            db.Posts.Remove(post);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var post = await this.db.Posts.FindAsync(id);
+            this.db.Posts.Remove(post);
+            await this.db.SaveChangesAsync();
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         private bool PostExists(int id)
         {
-            return db.Posts.Any(e => e.Id == id);
+            return this.db.Posts.Any(e => e.Id == id);
         }
     }
 }

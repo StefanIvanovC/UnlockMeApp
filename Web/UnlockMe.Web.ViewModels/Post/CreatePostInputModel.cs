@@ -8,8 +8,6 @@
 
     public class CreatePostInputModel
     {
-        public int PostId { get; set; }
-
         [Required]
         [MinLength(3)]
         public string Title { get; set; }

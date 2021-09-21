@@ -24,11 +24,10 @@
             this.commentsRepository = commentsRepository;
         }
 
-        public async Task CreateAsync(CreatePostInputModel input, string userId, string picturePath)
+        public async Task<int> CreateAsync(CreatePostInputModel input, string userId, string picturePath)
         {
             var post = new Post
             {
-                Id = input.PostId,
                 AddedByUserId = userId,
                 Title = input.Title,
                 Description = input.Description,
@@ -61,6 +60,7 @@
 
             await this.postsRepository.AddAsync(post);
             await this.postsRepository.SaveChangesAsync();
+            return post.Id;
         }
 
         public async Task DeleteAsync(int id)

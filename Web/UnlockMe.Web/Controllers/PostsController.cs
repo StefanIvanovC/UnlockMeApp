@@ -46,16 +46,15 @@
 
             try
             {
-                await this.postService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/pictures");
+                var postId = await this.postService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/pictures");
+                this.TempData["SuccsessfulPostCreateMessage"] = "Your post is successfully created!";
+                return this.RedirectToAction(nameof(this.ById), new { id = postId });
             }
             catch (Exception ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
                 return this.View(input);
             }
-
-            // TODO - Redirect to the post view page later
-            return this.RedirectToAction(nameof(this.ById), new { id = input.PostId });
         }
 
         // Posts/All/3 "Page of"
@@ -75,6 +74,10 @@
         public IActionResult ById(int id)
         {
             var post = this.postService.GetById<SinglePostViewModel>(id);
+            if (post == null)
+            {
+                return this.NotFound();
+            }
             return this.View(post);
         }
 

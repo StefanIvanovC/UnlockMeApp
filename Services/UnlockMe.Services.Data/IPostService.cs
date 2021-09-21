@@ -7,7 +7,7 @@
 
     public interface IPostService
     {
-        Task CreateAsync(CreatePostInputModel input, string userId, string picturePath);
+        Task<int> CreateAsync(CreatePostInputModel input, string userId, string picturePath);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6);
 
