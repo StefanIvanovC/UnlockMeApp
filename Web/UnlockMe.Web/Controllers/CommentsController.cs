@@ -1,6 +1,7 @@
 ﻿namespace UnlockMe.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using UnlockMe.Data.Models;
@@ -24,7 +25,7 @@
         public async Task<IActionResult> Create(CreateCommentInputModel input)
         {
             var userId = this.userManager.GetUserId(this.User);
-            await this.commentsService.Create(input.PostId, userId , input.Content);
+            await this.commentsService.Create(input.PostId, userId, input.Content);
             return this.RedirectToAction("ById", "Posts", new { id = input.PostId });
         }
     }

@@ -1,5 +1,5 @@
 ﻿namespace UnlockMe.Data.Models
-{ 
+{
     using UnlockMe.Data.Common.Models;
 
     public class Comment : BaseDeletableModel<int>

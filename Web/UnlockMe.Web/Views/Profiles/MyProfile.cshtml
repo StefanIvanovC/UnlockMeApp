@@ -1,9 +1,10 @@
-﻿@{
+﻿@model UnlockMe.Web.ViewModels.Profile.MyProfileViewModel
+@{
     this.ViewData["Title"] = "My Profile";
 }
 <h1>@this.ViewData["Title"]</h1>
 <div class="row py-5 px-4">
-    <div class="col-md-6 offset-3">
+    <div class="col-md-8 offset-2">
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover">
@@ -30,26 +31,26 @@
             <div class="px-4 py-3">
                 <h5 class="mb-0">About</h5>
                 <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">PROFILE DESCRIPTION</p>
+                    <p class="font-italic mb-0">@Model.AboutMe</p>
                 </div>
             </div>
             <div class="row mb-4" jus>
                 <div class="single-recipe-layout1">
-                     <div class="col-xl-9 col-12">
-                         <ul class="entry-meta">
-                             <li class="single-meta">
-                                 <ul class="item-rating">
-                                     <li class="star-fill"><i class="fas fa-star"></i></li>
-                                     <li class="star-fill"><i class="fas fa-star"></i></li>
-                                     <li class="star-fill"><i class="fas fa-star"></i></li>
-                                     <li class="star-fill"><i class="fas fa-star"></i></li>
-                                     <li class="star-empty"><i class="fas fa-star"></i></li>
-                                     <li><span>9<span> / 10</span></span> </li>
-                                  </ul>
-                             </li>
-                         </ul>
+                    <div class="col-xl-9 col-12">
+                        <ul class="entry-meta">
+                            <li class="single-meta">
+                                <ul class="item-rating">
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-empty"><i class="fas fa-star"></i></li>
+                                    <li><span>9<span> / 10</span></span> </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                 </div>
+                </div>
             </div>
             <div class="py-4 px-4">
                 <div class="d-flex align-items-center justify-content-between mb-3">

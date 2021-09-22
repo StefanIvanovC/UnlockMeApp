@@ -10,7 +10,7 @@
     {
         private readonly IDeletableEntityRepository<Comment> commentsRepository;
 
-        public CommentsService(IDeletableEntityRepository<Comment> commentsRepository )
+        public CommentsService(IDeletableEntityRepository<Comment> commentsRepository)
         {
             this.commentsRepository = commentsRepository;
         }
