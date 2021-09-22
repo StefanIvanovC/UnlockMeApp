@@ -1,6 +1,7 @@
 ﻿namespace UnlockMe.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using UnlockMe.Data.Common.Models;
 
@@ -24,6 +25,7 @@
         public virtual Tag Tag { get; set; }
 
         // Idenntity ----------------
+        [Required]
         public string AddedByUserId { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }

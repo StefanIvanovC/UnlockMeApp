@@ -1,6 +1,7 @@
 ﻿namespace UnlockMe.Web.ViewModels.Post
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
@@ -23,11 +24,16 @@
 
         public string TagName { get; set; }
 
+        public int HeartCount { get; set; }
+
+        public IEnumerable<PostCommentViewModel> Comments { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Post, SinglePostViewModel>()
+                // .ForMember(x => x.HeartCount, opt => opt.MapFrom(x => x.Hearts))
                 .ForMember(x => x.PictureUrl, opt =>
-                opt.MapFrom(x =>
+                      opt.MapFrom(x =>
                  "/pictures/posts/" + x.Pictures.FirstOrDefault().Id + "." + x.Pictures.FirstOrDefault().Extension));
         }
 

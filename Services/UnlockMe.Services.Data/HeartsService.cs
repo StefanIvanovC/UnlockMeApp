@@ -17,10 +17,9 @@
 
         public int GetHeartsCount(int postId)
         {
-            var currentCountHearts = this.heartsRepository
-                .All()
-                .FirstOrDefault(x => x.PostId == postId)
-                .CountHearts;
+            var currentCountHearts = this.heartsRepository.All()
+                .Where(x => x.PostId == postId)
+                .Count();
 
             return currentCountHearts;
         }

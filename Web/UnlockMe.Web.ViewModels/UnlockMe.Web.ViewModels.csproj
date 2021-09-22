@@ -24,8 +24,4 @@
     <ProjectReference Include="..\..\Services\UnlockMe.Services.Mapping\UnlockMe.Services.Mapping.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Comment\" />
-  </ItemGroup>
-
 </Project>

@@ -1,7 +1,8 @@
 ﻿namespace UnlockMe.Web.ViewModels.Home
 {
-    using AutoMapper;
     using System.Linq;
+
+    using AutoMapper;
     using UnlockMe.Data.Models;
     using UnlockMe.Services.Mapping;
 

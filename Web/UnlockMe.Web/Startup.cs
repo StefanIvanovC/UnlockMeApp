@@ -68,6 +68,7 @@
             services.AddTransient<IPostService, PostsService>();
             services.AddTransient<IHeartsService, HeartsService>();
             services.AddTransient<IQuestionsService, QuestionsService>();
+            services.AddTransient<ICommentsService, CommentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

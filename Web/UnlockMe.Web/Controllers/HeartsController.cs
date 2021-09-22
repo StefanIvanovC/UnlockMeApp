@@ -21,6 +21,7 @@
 
         [HttpPost]
         [Authorize]
+        [IgnoreAntiforgeryToken]
         public async Task<ResponseHeartsViewModel> GiveHeart(GiveHeartsInputModel input)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;

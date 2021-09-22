@@ -4,12 +4,12 @@
 }
 @if (this.TempData["SuccsessfulPostCreateMessage"] != null)
 {
-<div class="alert alert-success alert-dismissible fade show">
-    @this.TempData["SuccsessfulPostCreateMessage"]
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
+    <div class="alert alert-success alert-dismissible fade show">
+        @this.TempData["SuccsessfulPostCreateMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
 <div class="card col-md-8 offset-2 bg-light row d-flex justify-content-center">
     <div class="col-md-8">
@@ -41,10 +41,10 @@
                                 </ul>
                             </li>*@
                         <li class="single-meta">
-                            <a href="#">
-                                <i class="fas fa-heart" data-vote></i><span>TODO</span>
-                                Likes
-                            </a>
+                            <ul class="list-group">
+                                <li class="list-group-item" data-vote="1"> <i class="fas fa-star"></i></li>
+                                <li><span id="heartsCountVote">@Model.HeartCount Hearts</span></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -140,6 +140,19 @@
                             </div>
                         </div>
                     </li>
+                    <li>
+                        <div class="feature-wrap">
+                            <div class="media">
+                                <div class="feature-icon">
+                                    <i class="far fa-eye"></i>
+                                </div>
+                                <div class="media-body space-sm">
+                                    <div class="feature-title">Coments</div>
+                                    <div class="feature-sub-title">@Model.CommentsCount</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -220,18 +233,66 @@
                     <h5>
                         <span><small class="font-weight-bold">Comments on  post (@Model.CommentsCount)</small></span>
                     </h5>
+                    <button type="submit" class="btn btn-primary col-md-3 offset-5" onclick="showAddCommentForm()">Add comment</button>
                 </div>
-                <div class="card p-4">
+
+                <script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+                <script type="text/javascript">
+                    tinymce.init({
+                        selector: "textarea",
+                        plugins: ["image paste table link code media"]
+                    });
+                </script>
+
+                <div id="AddCommentForm">
+                    <form asp-controller="Comments" asp-action="Create" method="post">
+                        <input type="hidden" name="PostId" value="@Model.Id" />
+                        <div>
+                            <label for="Content"></label>
+                            <textarea name="Content" id="Content" class="form-control"></textarea>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" value="Upload comment &#128172" />
+                        </div>
+                    </form>
+                </div>
+
+                @foreach (var comment in Model.Comments)
+                {
+                    <hr>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="80" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">james_olesenn</small> <small class="font-weight-bold">Hmm, This poster looks cool</small></span> </div> <small>2 days ago</small>
+                        <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="80" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">@comment.UserUserName</small> <small class="font-weight-bold">@comment.Content</small></span> </div> <small>@comment.CreatedOn.ToShortDateString()</small>
                     </div>
-                </div>
-                <div class="card p-4">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="80" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">james_olesenn</small> <small class="font-weight-bold">Hmm, This poster looks cool</small></span> </div> <small>2 days ago</small>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </div>
+<hr>
+
+
+@section Scripts {
+    <script>
+        function showAddCommentForm() {
+            $(#"AddCommentForm").toggle();
+        }
+
+        $("li[data-vote]").each(function (el) {
+            $(this).click(function () {
+                var vote = $(this).attr("data-vote");
+                var postId = @Model.Id;
+                var data = { postId: postId, value: value };
+
+                $.ajax({
+                    type: "POST",
+                    url: "api/ById",
+                    data: JSON.stringify(data),
+                    success: function (data) {
+                        $('#heartsCountVote').html(data.value);
+                    },
+                    contentType: 'application/json',
+                });
+            })
+        });
+    </script>
+}
