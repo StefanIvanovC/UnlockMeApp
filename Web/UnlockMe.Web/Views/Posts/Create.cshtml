@@ -18,9 +18,13 @@
     </div>
     <div class="file-p">
         <label asp-for="Picture"></label>
-        <input asp-for="Picture" class="form-control" />
+        <input type="file" accept="image/*" onchange="loadFile(event)" asp-for="Picture" class="form-control" />
         <span asp-validation-for="Picture" class="text-danger"></span>
+
     </div>
+    <hr>
+    <img id="output" class="col-md-8 offset-2" />
+
     @*Eventualy, user must add tag for every post.. maybe add Enum of Categories.. TODO
             <div class="form-group">
             <label asp-for="TagId"></label>
@@ -53,3 +57,18 @@
     </div>
 </div>
 
+
+<input type="file" accept="image/*" onchange="loadFile(event)">
+<img id="output" />
+@section Scripts {
+    <script>
+        var loadFile = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+    </script>
+}

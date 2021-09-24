@@ -6,6 +6,8 @@
     {
         public IEnumerable<IndexPageRandomPostsViewModel> RandomPosts { get; set; }
 
+        public IEnumerable<IndexPageRandomProfilesViewModel> RandomProfiles { get; set; }
+
         public int PostCount { get; set; }
 
         public int PicturesCount { get; set; }

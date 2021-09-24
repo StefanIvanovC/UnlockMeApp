@@ -1,10 +1,11 @@
 ﻿namespace UnlockMe.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
-    using System.Threading.Tasks;
     using UnlockMe.Data;
     using UnlockMe.Data.Models;
     using UnlockMe.Services.Data;

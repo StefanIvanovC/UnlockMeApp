@@ -1,5 +1,6 @@
 ﻿namespace UnlockMe.Web.Controllers
 {
+    using System;
     using System.Diagnostics;
     using System.Linq;
 
@@ -24,6 +25,8 @@
 
         public IActionResult Index()
         {
+            var allUsers = this.db.Users.Take(3).ToList();
+           
             var viewModel = new IndexViewModel()
             {
                 PostCount = this.db.Posts.Count(),
