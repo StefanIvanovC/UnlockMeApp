@@ -66,7 +66,7 @@
                 PostsPerPage = postsPerPage,
                 PageNumber = id,
                 PostsCount = this.postService.GetCount(),
-                Posts = this.postService.GetAll<PostInListViewModel>(id = 1, postsPerPage),
+                Posts = this.postService.GetAll<PostInListViewModel>(id, postsPerPage),
             };
             return this.View(viewModel);
         }

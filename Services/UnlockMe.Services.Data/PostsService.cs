@@ -73,9 +73,8 @@
         public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 6)
         {
             var posts = this.postsRepository.AllAsNoTracking()
-                 .OrderBy(x => x.Id)
-                 .Skip((page - 1) * itemsPerPage)
-                 .Take(itemsPerPage)
+                 .OrderByDescending(x => x.Id)
+                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
                  .To<T>()
                  .ToList();
 
