@@ -7,9 +7,9 @@
 <div class="row">
     @foreach (var post in this.Model.Posts)
     {
-        <div class="col-md-4 p-4")>
+        <div class="col-md-4 p-4" )>
             <div class="card p-4" margin: 10px">
-                <img src="@post.ImagePath" />
+                    <img style="filter:blur(3px)" src="@post.ImagePath" width="300" class="mr-3" img-responsive/>
                 <div class="card-body">
                     <h5 class="card-title">@post.Title</h5>
                     <h6 class="card-text">@post.Description</h6>
@@ -22,7 +22,7 @@
 <hr>
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
-        <li class="page-item active" aria-current="page">
+        <li class="page-item" aria-current="page">
             <a class="page-link" asp-action="All" asp-route-id="1">Newest</a>
         </li>
         <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> } ">
@@ -38,7 +38,7 @@
         <li class="page-item active" aria-current="page">
             <a class="page-link" href="#">@Model.PageNumber</a>
         </li>
-        @for (int i = Model.PageNumber + 2; i < Model.PageNumber + 3; i++)
+        @for (int i = Model.PageNumber + 1; i < Model.PageNumber + 3; i++)
         {
             if (i <= Model.PagesCount)
             {
@@ -48,10 +48,8 @@
         <li class="page-item  @if (!Model.HasNextPage) { <text>disabled</text> }">
             <a class="page-link" asp-action="All" asp-route-id="@Model.NextPageNumber">Next</a>
         </li>
-        <li class="page-item active" aria-current="page">
+        <li class="page-item" aria-current="page">
             <a class="page-link" asp-action="All" asp-route-id="@Model.PagesCount">Oldest</a>
         </li>
     </ul>
-
-
 </nav>

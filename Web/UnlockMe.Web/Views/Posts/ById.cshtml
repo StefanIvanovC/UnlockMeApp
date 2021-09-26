@@ -11,6 +11,10 @@
         </button>
     </div>
 }
+
+
+
+
 <div class="card col-md-8 offset-2 bg-light row d-flex justify-content-center">
     <div class="col-md-8">
         <div class="single-recipe-layout1">
@@ -66,7 +70,7 @@
                         </ul>
                     </div>*@
             </div>
-            <div class="col-xl-9 col-12">
+            <div class="col-12">
                 <ul class="entry-meta">
                     <li class="single-meta">
                         <form asp-action="Delete" asp-route-id="@Model.Id" id="deletePost">
@@ -80,9 +84,11 @@
                     </li>
                 </ul>
             </div>
-            <div class="item-figure">
-                <img src="@Model.PictureUrl" alt="Picture:@Model.Title" />
+            <hr>
+            <div class="item-figure col-md-12 offset-3">
+                <img style="filter:blur(5px)" src="@Model.PictureUrl" alt="Picture:@Model.Title" />
             </div>
+            <hr>
             <div>
                 <a asp-action="ById" asp-route-id="TODO" target="_blank" class="btn btn-primary">Unlock Picture &#128274</a>
             </div>
@@ -264,7 +270,7 @@
                         <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/hczKIze.jpg" width="80" class="user-img rounded-circle mr-2"> <span><small class="font-weight-bold text-primary">@comment.UserUserName</small> <small class="font-weight-bold">@comment.Content</small></span> </div> <small>@comment.CreatedOn.ToShortDateString()</small>
                         <div>
                             <button type="button" class="btn btn-primary">Reply</button>
-                            </div>
+                        </div>
                     </div>
                 }
             </div>
@@ -276,6 +282,7 @@
 
 @section Scripts {
     <script>
+
         function showAddCommentForm() {
             $(#"AddCommentForm").toggle();
         }

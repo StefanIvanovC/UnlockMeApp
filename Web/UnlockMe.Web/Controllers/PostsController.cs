@@ -58,9 +58,9 @@
         }
 
         // Posts/All/3 "Page of"
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
-            const int postsPerPage = 12;
+            const int postsPerPage = 6;
             var viewModel = new PostListViewModel
             {
                 PostsPerPage = postsPerPage,
