@@ -21,7 +21,9 @@ namespace UnlockMe.Data.Models
         }
 
         // User profile
-        public string ProfileImagePath { get; set; }
+        public char Gender { get; set; }
+
+        public string ProfilePicture { get; set; }
 
         public string AboutMe { get; set; }
 

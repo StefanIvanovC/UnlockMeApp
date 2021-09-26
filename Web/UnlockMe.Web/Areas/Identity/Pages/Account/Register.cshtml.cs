@@ -33,10 +33,10 @@
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
-            _emailSender = emailSender;
+            this._userManager = userManager;
+            this._signInManager = signInManager;
+            this._logger = logger;
+            this._emailSender = emailSender;
         }
 
         [BindProperty]
@@ -70,6 +70,10 @@
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [Required(ErrorMessage = "Gender is required")]
+            [Display(Name = "Gender")]
+            public char Gender { get; set; }
+
             [Required(ErrorMessage = "Date of birth is required!")]
             [Display(Name = "Date of birth")]
             [DataType(DataType.Date)]
@@ -82,23 +86,23 @@
             public string AboutMe { get; set; }
 
             [Required]
-            public IFormFile Picture { get; set; }
+            public string ProfilePicture { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            this.ReturnUrl = returnUrl;
+            this.ExternalLogins = (await this._signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+            this.ExternalLogins = (await this._signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email, AboutMe = Input.AboutMe, DateOfBirth = Input.DateOfBirth };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email, AboutMe = Input.AboutMe, DateOfBirth = Input.DateOfBirth, Gender = Input.Gender, ProfilePicture = Input.ProfilePicture };
+                var result = await this._userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
