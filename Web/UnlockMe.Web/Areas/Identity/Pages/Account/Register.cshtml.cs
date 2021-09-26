@@ -55,6 +55,18 @@
             public string UserName { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            [MaxLength(15)]
+            public string FirstName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last Name")]
+            [MaxLength(15)]
+            public string LastName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -101,7 +113,7 @@
             this.ExternalLogins = (await this._signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email, AboutMe = Input.AboutMe, DateOfBirth = Input.DateOfBirth, Gender = Input.Gender, ProfilePicture = Input.ProfilePicture };
+                var user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email, AboutMe = Input.AboutMe, DateOfBirth = Input.DateOfBirth, Gender = Input.Gender, ProfilePicture = Input.ProfilePicture, FirstName = Input.FirstName, LastName = Input.LastName };
                 var result = await this._userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
