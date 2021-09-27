@@ -10,11 +10,13 @@
     {
         public string Id { get; set; }
 
-        public string ProfileImagePath { get; set; }
+        public string ProfilePicture { get; set; }
 
         public string UserName { get; set; }
 
         public string AboutMe { get; set; }
+
+        public char Gender { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
