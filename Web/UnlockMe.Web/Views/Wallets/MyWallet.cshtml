@@ -1,4 +1,48 @@
-﻿@{
+﻿@model UnlockMe.Web.ViewModels.Wallet.CreateWalletInputModel
+@{
     this.ViewData["Title"] = "My wallet";
 }
 <h1>@ViewData["Title"]</h1>
+<div class="card col-md-8 offset-2 bg-light row d-flex justify-content-center">
+    <form asp-controller="Wallets" asp-action="Create" method="post">
+        @*<div>
+            <input type="hidden" name="UserId" value="@this.Model.UserId" />
+        </div>*@
+        <input type="submit" class="btn btn-primary" value="Create Wallet" />
+    </form>
+</div>
+
+<div class="card col-md-8 offset-2 bg-light row d-flex justify-content-center">
+
+    <div class="media">
+        <img src="..." class="mr-3" alt="...">
+        <div class="media-body">
+            <h5 class="mt-0">BGN</h5>
+            <p>BGN are real money.</p>
+            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Display my BGN ballance</button>
+        </div>
+    </div>
+    <hr>
+    <p>Remaining progress to unlock transfer money to your account</p>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+    </div>
+    <hr>
+    <div class="media">
+        <img src="..." class="mr-3" alt="...">
+        <div class="media-body">
+            <h5 class="mt-0">Coins</h5>
+            <p>The coins are not real money, they are only virtual money. But with them you can buy things for your profile.</p>
+            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Display my coin balance</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+
+    </script>
+}

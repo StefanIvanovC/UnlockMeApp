@@ -69,6 +69,7 @@
             services.AddTransient<IHeartsService, HeartsService>();
             services.AddTransient<IQuestionsService, QuestionsService>();
             services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<IWalletsService, WalletsService>();
 
             // services.AddTransient<IProfileService, ProfileService>();
         }
