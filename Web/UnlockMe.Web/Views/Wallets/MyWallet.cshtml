@@ -3,11 +3,31 @@
     this.ViewData["Title"] = "My wallet";
 }
 <h1>@ViewData["Title"]</h1>
+
+@if (this.TempData["SuccessfullyCreatedWalletMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @this.TempData["SuccessfullyCreatedWalletMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+@if (this.TempData["SuccessfullyCreatedWalletMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @this.TempData["SuccessfullyBonusMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
 <div class="card col-md-8 offset-2 bg-light row d-flex justify-content-center">
     <form asp-controller="Wallets" asp-action="Create" method="post">
         @*<div>
-            <input type="hidden" name="UserId" value="@this.Model.UserId" />
-        </div>*@
+                <input type="hidden" name="UserId" value="@this.Model.UserId" />
+            </div>*@
         <input type="submit" class="btn btn-primary" value="Create Wallet" />
     </form>
 </div>

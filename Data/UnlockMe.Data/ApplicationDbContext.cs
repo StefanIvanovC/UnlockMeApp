@@ -60,6 +60,10 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ApplicationUser>()
+            .HasOne(a => a.Wallet)
+            .WithOne(a => a.User)
+            .HasForeignKey<Wallet>(w => w.UserId);
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 

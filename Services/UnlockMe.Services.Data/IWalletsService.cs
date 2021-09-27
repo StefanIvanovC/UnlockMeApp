@@ -1,9 +1,10 @@
 ﻿namespace UnlockMe.Services.Data
 {
     using System.Threading.Tasks;
+    using UnlockMe.Data.Models;
 
     public interface IWalletsService
     {
-        Task Create();
+        Task<Wallet> CreateAsync(string userId);
     }
 }

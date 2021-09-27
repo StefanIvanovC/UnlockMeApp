@@ -16,11 +16,19 @@
             this.walletsRepository = walletsRepository;
         }
 
-        public async Task Create()
+        public async Task<Wallet> CreateAsync(string userId)
         {
-            var wallet = new Wallet { Coins = 100, Money = 10.99m };
+            var wallet = new Wallet
+            {
+                Id = Guid.NewGuid().ToString(),
+                Money = 10.99m,
+                Coins = 100,
+                UserId = userId,
+            };
+
             await this.walletsRepository.AddAsync(wallet);
             await this.walletsRepository.SaveChangesAsync();
+            return wallet;
         }
     }
 }
